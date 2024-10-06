@@ -28,11 +28,11 @@ Blog.init({
             key: 'id'
         },
     },
-
+    
     sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    modelName: 'blog'
+    timestamps:false,
+    freezeTableName:true,
+    modelName:'blog'
 
 });
 module.exports = Blog;
