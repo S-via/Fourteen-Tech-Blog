@@ -6,25 +6,32 @@ const blogData = require('./blogData.json');
 const commentData = require('./commentData.json');
 
 const seedDatabase = async () => {
-    try{
+    try {
         await sequelize.sync({ force: true });
-        
-        await User.bulkCreate(userData, {
-            individualHooks:true,
+
+        const users = await User.bulkCreate(userData, {
+            individualHooks: true,
             returning: true,
         });
 
-        await Blog.bulkCreate(blogData, {
-         returning:true,
+        const blogs = await Blog.bulkCreate(blogData, {
+            returning: true,
         });
 
-        await Comment.bulkCreate(commentData, {
-           returning: true,
-        });
+        await Comment.bulkCreate(
+            commentData.map(comment => ({
+                ...comment,
+                user_id: users[Math.floor(Math.random() * users.length)].id,
+                blog_id: blogs[Math.floor(Math.random() * blogs.length)].id,
+            })),
+            {
+                returning: true,
+            });
+
         process.exit(0);
-    } catch (error){
-        console.error('failed',error);
+    } catch (error) {
+        console.error('failed', error);
     }
-    }
+}
 
 module.exports = seedDatabase;
