@@ -2,7 +2,8 @@
 
 const router = require('express').Router();
 const { Blog, User, Comment } = require('../../models'); //BUG 
-// with aunth varibale goes here !!!
+const withAuth = require('../../utils/auth');
+
 
 // get blogs
 router.get('/', async (req, res) => {

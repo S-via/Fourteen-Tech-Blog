@@ -1,8 +1,7 @@
 // entry point for models
 const router = require('express').Router();
 const { User, Blog, Comment } = require('../models/');
-
-// with auth variable goes here !!
+/* const withAuth = require('../../utils/auth'); */
 
 // get homepage with all blog post 
 router.get('/', async (req, res) => {
