@@ -1,17 +1,42 @@
-// model exports
-const {Model, Dataypes} = require('sequelize');
-const sequelize = require('');
-const bcrypt = require('bcrypt');
+// relationship between models
 
-class User extends Model {
-    checkPassword(loginPw){
-        return bcrypt.compareSync(loginPw, this.pasword);
-    }
-}
+// export each invidual model
+const User = require('./User');
+const Blog =require('./Blog');
+const Comment = require('./Comment');
 
-User.init({
-    user:
-    {
-        type: DataTypes.
-    }
+// user has many blog
+User.hasMany(Blog,{
+    foreignKey:'user_id',
+    onDelete:'CASCADE'
+
+});
+
+// blog belongs to user
+Blog.belongsTo(User,{
+    foreignKey:'user_id'
 })
+
+// user has many comments
+User.hasMany(Comment,{
+    foreignKey:'user_id',
+    onDelete:'CASCADE'
+})
+
+// comment belong to user
+Comment.belongsTo(User,{
+    foreignKey:'user_id'
+})
+
+//blog has many comment
+Blog.hasMany(Comment,{
+    foreignKey:'blog_id',
+    onDelete:'CASCADE'
+})
+
+// comments belong to a blog
+Comment.belongsTo(Blog,{
+    foreignKey:'blog_id'
+})
+
+module.exports ={User,Blog,Comment};
