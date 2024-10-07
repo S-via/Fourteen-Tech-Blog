@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars')
 const routes = require('./controllers');
+
 // not sure if needed
 /* const helpers = require('utils') */
 
@@ -13,10 +14,10 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// handlebars.js engine ????
+// handlebars.js engine for helpers ????
 const hbs= exphbs.create({helpers});
 
-// VARIABLE FOR SESS ???
+// UNFINISHED COOKIE:
 const sess = {
     secret: 'Super secret secret',
     cookie: {},
@@ -28,7 +29,7 @@ const sess = {
 };
 app.use(session(sess));
 
-// which temples to use express.js ????
+// to inform which temples from handlebars to use from express.js
 app.engine('handlebars',hbs.engine);
 app.set('view engine, handlebars');
 
