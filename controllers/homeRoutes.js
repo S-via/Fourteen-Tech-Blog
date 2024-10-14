@@ -1,4 +1,5 @@
 // entry point for models
+const sequelize = require('../config/connection')
 const router = require('express').Router();
 const { User, Blog, Comment } = require('../models/');
 /* const withAuth = require('../../utils/auth'); */
@@ -7,6 +8,7 @@ const { User, Blog, Comment } = require('../models/');
 router.get('/', async (req, res) => {
     try {
         const blogData = await Blog.findAll({
+            //attribute:["","",""],
             include: [{
                 model: User,
                 attribute: ['username']
@@ -15,7 +17,7 @@ router.get('/', async (req, res) => {
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
         res.render('homepage', {
             blogs,
-            logged_in: req.session.logged_in
+            loggedIn: req.session.loggedIn
         })
         
     } catch (err) {
@@ -38,48 +40,31 @@ router.get('/blog/:id', async (req, res) => {
 
         })
         if (!blogData) {
-            res.status(404).json({ message: 'nlo blog found' })
+            res.status(404).json({ message: 'no blog found' })
             return;
         }
         const blogs = blogData.get({ plain: true })
-        res.render('single-post', {
+        res.render('singleblog', {
             blogs,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
     }
 })
-// get login
+// get login route to 
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/profile');
+    if (req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
     res.render('login');
 });
 
-// get profile 
-router.get('/profile', async (req, res) => {
-    try {
-        if (!req.session.logged_in) {
-            res.redirect('/login');
-            return;
-        }
-        const userData = await User.findByPk(req.session.user_id, {
-            include: [{
-                model: Blog
-            }]
-        })
-        const user = userData.get({ plain: true });
-        res.render('profile', {
-            ...user,
-            logged_in: true,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-
-    }
-
+// get signup route 
+router.get('/signup', (req,res)=>{
+        res.render('signup');
 });
+
+
 module.exports = router;
