@@ -2,7 +2,7 @@
 const sequelize = require('../config/connection')
 const router = require('express').Router();
 const { User, Blog, Comment } = require('../models/');
-/* const withAuth = require('../../utils/auth'); */
+const withAuth = require('../../utils/auth');
 
 // get homepage with all blog post 
 router.get('/', async (req, res) => {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             blogs,
             loggedIn: req.session.loggedIn
         })
-        
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -62,9 +62,42 @@ router.get('/login', (req, res) => {
 });
 
 // get signup route 
-router.get('/signup', (req,res)=>{
-        res.render('signup');
+router.get('/signup', (req, res) => {
+    res.render('signup');
 });
 
+// get blog route with auth for logged in user that renders to dashboard 
+router.get('/', withAuth, async (req, res) => {
+    try {
+        const blogwId = await Blog.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            attributes: ['id', 'title', 'content',],
+            include: {
+                model: User,
+                attributes: ['username']
+            },
+            include: [{
+                model: Comment,
+                attributes: ['id', 'comments', 'blog_id', 'user_id'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            }]
+        })
+        const blogs = blogwId.map((blog) => blog.get({ plain: true }))
+        res.render('dashboard', {
+            blogs,
+            loggedIn: req.session.loggedIn
 
+        })
+
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+// get 
 module.exports = router;
