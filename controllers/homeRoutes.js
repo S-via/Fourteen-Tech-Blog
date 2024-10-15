@@ -99,5 +99,41 @@ router.get('/', withAuth, async (req, res) => {
     }
 })
 
-// get 
+// get blogs by id for user to edit 
+router.get('/update/:id', withAuth, async (req, res) => {
+    try {
+        const updateBlog = await Blog.findOne({
+            where: {
+                id: req.params.id
+            },
+            attributes: ['id', 'title', 'content'],
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                }],
+            include: [{
+                model: Comment,
+                attributes: ['id', 'comments', 'blog_id', 'user_id'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            }]
+        })
+        const blog = updateBlog.get({ plain: true })
+        res.render('update', {
+            blog,
+            loggedIn: req.session.loggedIn
+
+        })
+
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+// get route for user to add new blog
+router.get('/new', (req, res) => {
+    res.render('blog');
+});
 module.exports = router;
