@@ -14,8 +14,21 @@ router.get('/', async (req, res) => {
                     model: User,
                     attributes: ['username'],
                 },
-            ],
+                {
+                    model: Comment,
+                    unclude:{
+                        model:User,
+                        attributes:['username']
+                    }
+                }
+            ]
         })
+        if(!blogData){
+            res.status(404).json({message:'no blog found'})
+            return;
+        }
+        const blogs = blogData.get({plain:true});
+        res.status(200).json(blogs);
         
     } catch (err) {
         res.status(500).json(err);
