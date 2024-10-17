@@ -1,4 +1,13 @@
-<!--display all posts -->
+<!--display all posts  -->
+{{each blogs as|blog|}}
+
+{{#each blog}}
+<p><strong>{{@key}}:</strong>{{this}}</p>
+{{/each}}
+{{/each}}
+
 <!-- when clicked on title of blog post it will direct them to -->
 <!-- Add comment with button to submit-->
+
+
 <!-- -->
