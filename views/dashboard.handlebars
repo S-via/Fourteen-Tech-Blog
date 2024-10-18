@@ -1,27 +1,22 @@
 <!-- when user clicks dashboard they will be presnted with  their own post-->
+{{if blogs.length}}
+<div>
+    <h1>Your Blog Post History</h1>
 {{each blogs as|blog|}}
 
 <div class="card">
   <div class="card-header">
-    Featured
+    <a href="/{{blog.id}}">{{blog.title}}</a> <!--add edit route inside link -->
   </div>
   <div class="card-body">
-    <h5 class="card-title"><a href="/{{id}}">{{title}}</a></h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <p class="card-text">{{content}}</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
 
 {{/each}}
-{{/each}}
+</div>
+{{/if}}
 <!-- button to add new post -->
+<button type="submit" class="btn btn-primary">Add New Post </button>
 
-<!-- when they click add new post they will-->
-<!-- they will be prompted with form to add 
-title 
-
-content 
-
-button to submit -->
-
-<!-- back in the dashboard -->
