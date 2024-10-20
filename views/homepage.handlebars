@@ -1,13 +1,18 @@
 <!--display all posts  -->
 {{each blogs as|blog|}}
 
-{{#each blog}}
-<p><strong>{{@key}}:</strong>{{this}}</p>
+<div class="card">
+  <div class="card-header">
+    <a href ="/blog/{{id}}">{{blog.title}}</a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Posted by:{{blog.username}}</h5>
+    <p class="card-text">{{blog.content}}.</p>
+  </div>
+</div>
+
 {{/each}}
-{{/each}}
+
 
 <!-- when clicked on title of blog post it will direct them to -->
 <!-- Add comment with button to submit-->
-
-
-<!-- -->
