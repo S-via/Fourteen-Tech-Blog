@@ -2,7 +2,7 @@
 const sequelize = require('../config/connection')
 const router = require('express').Router();
 const { User, Blog, Comment } = require('../models/');
-const withAuth = require('../../utils/auth');
+const withAuth = require('../utils/auth');
 
 // get homepage with all blog post 
 router.get('/', async (req, res) => {
@@ -43,9 +43,9 @@ router.get('/blog/:id', async (req, res) => {
             res.status(404).json({ message: 'no blog found' })
             return;
         }
-        const blogs = blogData.get({ plain: true })
+        const blog = blogData.get({ plain: true })
         res.render('singleblog', {
-            blogs,
+            blog,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {

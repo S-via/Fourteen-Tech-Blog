@@ -1,4 +1,32 @@
-<!--display all posts  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Homepage</title>
+</head>
+<body>
+    <h1>All Blog Posts</h1>
+    <ul>
+        {{#each blogs}}
+        <li>
+            <h2><a href="/blog/{{this.id}}">{{this.title}}</a></h2>
+            <p>Posted by: {{this.username}}</p>
+            <p>{{this.content}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+{{!-- <!--display all posts  -->
 {{each blogs as|blog|}}
 
 <div class="card">
@@ -12,7 +40,7 @@
 </div>
 
 {{/each}}
-
+ --}}
 
 <!-- when clicked on title of blog post it will direct them to -->
 <!-- Add comment with button to submit-->
