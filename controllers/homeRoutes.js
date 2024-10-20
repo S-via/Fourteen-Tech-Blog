@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
             //attribute:["","",""],
             include: [{
                 model: User,
-                attribute: ['username']
+                attributes: ['username']
             }]
         })
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
@@ -67,25 +67,25 @@ router.get('/signup', (req, res) => {
 });
 
 // get blog route with auth for logged in user that renders to dashboard 
-router.get('/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const blogwId = await Blog.findAll({
             where: {
                 user_id: req.session.user_id
             },
             attributes: ['id', 'title', 'content',],
-            include: {
+            include: [{
                 model: User,
                 attributes: ['username']
             },
-            include: [{
+            {
                 model: Comment,
                 attributes: ['id', 'comments', 'blog_id', 'user_id'],
                 include: {
                     model: User,
                     attributes: ['username']
                 }
-            }]
+            }],
         })
         const blogs = blogwId.map((blog) => blog.get({ plain: true }))
         res.render('dashboard', {
