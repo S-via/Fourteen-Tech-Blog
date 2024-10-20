@@ -33,5 +33,6 @@ const seedDatabase = async () => {
         console.error('failed', error);
     }
 }
+seedDatabase();
 
 module.exports = seedDatabase;
