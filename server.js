@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 // handlebars.js engine for helpers ????
 const hbs= exphbs.create({helpers});
 
-// UNFINISHED COOKIE:
+
 const sess = {
     secret: 'Super secret secret',
     cookie: {
