@@ -23,7 +23,12 @@ router.get('/',async(req,res)=>{
             blogposts: blogposts,
             logged_in: req.session.logged_in
         })
-    })
+    });
+
+    //// get signup route and redirect to signup page ////
+    router.get('/signup',(req,res)=>{
+        res.render('signup')
+    });
 
 
 
