@@ -1,12 +1,9 @@
 // entry point for models
-
 const router = require('express').Router();
 const { User, Blog, Comment } = require('../models/');
 const withAuth = require('../utils/auth');
 
-
 //// get blogs data ////
-
 router.get('/',async(req,res)=>{
         const blogdata = await Blog.findAll({
             include:[
