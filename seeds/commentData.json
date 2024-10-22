@@ -1,8 +1,6 @@
 [
     {
-        "id":1,
-        "comments": "comment for the first post",
         "blog_id": 1,
-        "user_id":1
+        "user_id":1,
+        "comments": "comment for the first post"
     }
-]

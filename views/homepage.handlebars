@@ -1,18 +1,28 @@
- <!--display all posts  -->
-{{#each blogs as|blog|}}
+<!--display all posts  -->
 
 <div class="card">
-  <div class="card-header">
-    <a href ="/blog/{{blog.id}}">{{blog.title}}</a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Posted by:{{blog.username}}</h5>
-    <p class="card-text">{{blog.content}}.</p>
-  </div>
+    <div class="card-header">
+        {{#if blogposts.length}}
+
+        {{#each blogposts as |blogpost|}}
+
+        Title: {{blogpost.title}}
+        {{/each}}
+    </div>
+    <div class="card-body">
+        {{#each blogposts as |blogpost|}}
+        <blockquote class="blockquote mb-0">
+            <p>Content: {{blogpost.content}}</p>
+            <footer class="blockquote-footer">Posted by: {{blogpost.username}}</footer>
+        </blockquote>
+        {{/each}}
+    </div>
 </div>
 
-{{/each}}
- 
+{{else}}
+<p>no blogs found</p>
+{{/if}}
+
 
 <!-- when clicked on title of blog post it will direct them to -->
 <!-- Add comment with button to submit-->
