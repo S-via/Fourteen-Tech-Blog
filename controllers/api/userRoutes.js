@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { User, Blog, Comment } = require('../../models');
 
 
-////// create route .post for new user to signup /////
+////// create route for users to signup /////
 router.post('/signup', async(req,res) =>{
     try{
         const newuserData = await User.create({
@@ -14,14 +14,14 @@ router.post('/signup', async(req,res) =>{
         req.session.save(() => {
             req.session.user_id = newuserData.id;
             req.session.logged_in = true;
-            res.status.json({ user: newuserData, logged_in: true });
+            res.redirect('/dashboard')
         });
     }catch (err){
         res.status(500).json({message:'error'})
     }
 })
 
-// create route .post for existing users to loggin
+//// create route for users to login ////
 router.post('/login', async (req, res) => {
     
     try {
