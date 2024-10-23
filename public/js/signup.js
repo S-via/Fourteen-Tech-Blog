@@ -20,7 +20,7 @@ if (username && password) {
 
     });
     if (response.ok) {
-        console.log('sucessful');
+        console.log('sucessfull');
 /// redirect to homepage
         document.location.replace('/homepage')
     } else {

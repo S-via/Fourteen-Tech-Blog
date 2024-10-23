@@ -9,13 +9,14 @@
 </head>
 <body>
     <nav>
+        {{#if logged_in}}
         <a href ="/">Home</a><br>
         <a href ="/dashboard">Dashboard</a><br>
-        {{#if logged_in}}
         <a href="/">Log out</a>
         {{else}}
-        <a href ="/">Log in</a><br>
-        <a href ="/">Log Out</a>
+        <a href ="/">Home</a><br>
+        <a href ="/dashboard">Dashboard</a><br>
+        <a href ="/login">Log in</a><br>
         {{/if}}
     </nav>
     <header><div>Tech Blog</div></header>

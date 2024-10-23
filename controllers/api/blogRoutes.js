@@ -5,7 +5,7 @@ const { Blog, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-router.get('/', withAuth, async (req, res) => {
+/* router.get('/', withAuth, async (req, res) => {
     try {
         // get username to display on blogs view (passed in res.render below)
         const user = await User.findByPk(req.session.user_id, {
@@ -56,7 +56,7 @@ router.post('/logout', withAuth, (req, res) => {
         req.session.destroy(() => {
             res.status(200).end();
         });   
-});
+}); */
 
 
 module.exports = router;

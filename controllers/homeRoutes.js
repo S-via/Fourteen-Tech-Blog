@@ -25,11 +25,21 @@ router.get('/',async(req,res)=>{
         })
     });
 
-    //// get signup route and redirect to signup page ////
+    //// get signup route and render to signup page ////
     router.get('/signup',(req,res)=>{
         res.render('signup')
     });
+    
+    //// get login route and render to login page ////
+    router.get('/login',(req,res)=>{
+        if(req.session.logged_in){
+            res.redirect('/dashboard');
+        } else {
+        res.render('login');
+    }
+    });
 
+    //// get dashboard route if user is loggedin ////
 
 
 

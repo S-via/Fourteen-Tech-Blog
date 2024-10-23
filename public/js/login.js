@@ -4,12 +4,12 @@ async function loginFormH(event) {
 }
 
 // to get from login.hdb  passed inside ()
-const username = document.querySelector('usernameli').value.trim();
-const password = document.querySelector('passwordli').value.trim();
+const username = document.querySelector('#usernameli').value.trim();
+const password = document.querySelector('#passwordli').value.trim();
 
 // when form has values send POST request
 if (username && password) {
-    const response = await fetch('/users/login', {
+    const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({
             username,
