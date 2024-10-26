@@ -22,7 +22,7 @@ if (username && password) {
     if (response.ok) {
         console.log('sucessfull');
 /// redirect to homepage
-        document.location.replace('/homepage')
+        document.location.replace('/dashboard')
     } else {
         alert(response.status.Text);
     }

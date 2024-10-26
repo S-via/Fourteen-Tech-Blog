@@ -33,28 +33,34 @@ router.get('/signup', (req, res) => {
 
 //// get login route and render to login page ////
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/dashboard');
-    } else {
-        res.render('login');
+    if (!req.session.logged_in) {
+        return res.render('login');
     }
+
 });
 
 //// get dashboard route if user is loggedin ////
 router.get('/dashboard', withAuth, async (req, res) => {
 
-    const userblogs = await Blog.findAll({
-        user_id: req.sessio.user_id
-    });
+    const blogdata = await Blog.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        include: [{
+            model: User,
+            attributes: ['username']
+        }]
 
-    const userpost = userblogs.map(data => data.get({ plain: true }));
-    console.log(userpost);
+    })
+    const userposts = blogdata.map(data => data.get({ plain: true }));
+    console.log(userposts);
 
     res.render('dashboard', {
-        userpost: userpost,
+        userposts: userposts,
         logged_in: req.session.logged_in
     });
-});
+})
+
 
 
 

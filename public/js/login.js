@@ -9,7 +9,7 @@ const password = document.querySelector('#passwordli').value.trim();
 
 // when form has values send POST request
 if (username && password) {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify({
             username,

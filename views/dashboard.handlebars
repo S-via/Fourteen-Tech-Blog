@@ -1,22 +1,29 @@
 <!-- when user clicks dashboard they will be presnted with  their own post-->
-{{if blogs.length}}
-<div>
-    <h1>Your Blog Post History</h1>
-{{#each blogs as|blog|}}
 
 <div class="card">
-  <div class="card-header">
-    <a href="/update/{{blog.id}}">{{blog.title}}</a> <!--add edit route inside link -->
-  </div>
-  <div class="card-body">
-    <p class="card-text">{{blog.content}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+    <div class="card-header">
+    
+        {{#if userposts.length}}
+      <p>dashboard</p>
+        {{#each userposts as |userpost|}}
+
+        {{userpost.title}}
+        {{/each}}
+    </div>
+    <div class="card-body">
+        {{#each userposts as |userpost|}}
+        <blockquote class="blockquote mb-0">
+            <p>{{userpost.content}}</p>
+            <footer class="blockquote-footer">Posted by: {{userpost.user.username}}</footer>
+        </blockquote>
+        {{/each}}
+    </div>
 </div>
 
-{{/each}}
-</div>
+{{else}}
+<p>no blogs found</p>
 {{/if}}
+
 <!-- button to add new post -->
 <button type="submit" class="btn btn-primary">Add New Post </button>
 
