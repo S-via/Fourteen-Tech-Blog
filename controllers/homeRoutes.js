@@ -39,8 +39,8 @@ router.get('/login', (req, res) => {
 
 });
 
-//// get dashboard route if user is loggedin ////
-router.get('/dashboard', withAuth, async (req, res) => {
+// get dashboard route if user is loggedin /
+router.get('/dashboard', async (req, res) => {
 
     const blogdata = await Blog.findAll({
         where: {

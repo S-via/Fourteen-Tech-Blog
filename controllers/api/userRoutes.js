@@ -3,12 +3,13 @@ const router = require('express').Router();
 const { User, Blog, Comment } = require('../../models');
 
 
+
 ////// create route for users to signup /////
 router.post('/signup', async(req,res) =>{
     try{
         const newuserData = await User.create({
-            username:username.req.body.username,
-            password:password.req.body.password,
+            username: req.body.username,
+            password: req.body.password,
         });
 
         req.session.save(() => {
