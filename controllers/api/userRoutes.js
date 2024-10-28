@@ -18,7 +18,8 @@ router.post('/signup', async(req,res) =>{
             res.redirect('/dashboard')
         });
     }catch (err){
-        res.status(500).json({message:'error'})
+        
+        res.status(500).json({message: err})
     }
 })
 
@@ -58,6 +59,15 @@ router.post('/login', async (req, res) => {
 ) 
 
 
-// create route .post to loggout
-
+//// create route .post to loggout //// NOT WORKING !!!!
+router.post('/logout',(req,res)=>{
+    if(req.session.logged_in){
+        req.session.destroy(()=>{
+            res.status(200).end()
+        })
+        
+    }else {
+        res.status(400).end();
+    }
+})
 module.exports = router;

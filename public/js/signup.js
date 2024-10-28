@@ -7,7 +7,7 @@ async function signupFormH(event){
     
     // when form has values send a POST request 
     if (username && password) {
-        const response = await fetch('/api/signup', {
+        const response = await fetch('/api/users/signup', {
             method: 'POST',
             body: JSON.stringify({
                 username,

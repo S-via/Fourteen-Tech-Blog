@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use('/api',routes); // find right path to routes 
+app.use(routes); // find right path to routes 
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`App listening ${PORT}`));
