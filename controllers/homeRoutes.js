@@ -39,7 +39,7 @@ router.get('/login', (req, res) => {
 
 });
 
-// get dashboard route if user is loggedin /
+//// get dashboard route if user is loggedin ////
 router.get('/dashboard', async (req, res) => {
 
     const blogdata = await Blog.findAll({
@@ -61,6 +61,10 @@ router.get('/dashboard', async (req, res) => {
     });
 })
 
+// get newpost route
+router.get('/new', (req,res)=>{
+    res.render('newpost');
+})
 
 
 
