@@ -8,14 +8,14 @@ async function loginFormH(event) {
     
     // when form has values send POST request
     if (username && password) {
-        const response = await fetch('/api/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({
                 username,
                 password
             }),
-            header: {
-                'Content-type': 'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             }
         });
         if(response.ok){

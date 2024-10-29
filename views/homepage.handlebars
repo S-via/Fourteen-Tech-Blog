@@ -2,16 +2,11 @@
 <div class="card">
     <div class="card-header">
         {{#if blogposts.length}}
-
-        {{#each blogposts as |blogpost|}}
-
-        {{blogpost.title}}
-        {{/each}}
     </div>
     <div class="card-body">
         {{#each blogposts as |blogpost|}}
         <blockquote class="blockquote mb-0">
-            <p>{{blogpost.content}}</p>
+            <p>{{blogpost.title}}</p>
             <footer class="blockquote-footer">Posted by: {{blogpost.user.username}}</footer>
         </blockquote>
         {{/each}}

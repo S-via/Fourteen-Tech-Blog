@@ -5,16 +5,11 @@
     
       <p>Dashboard</p>
         {{#if userposts.length}}
-
-        {{#each userposts as |userpost|}}
-
-        {{userpost.title}}
-        {{/each}}
     </div>
     <div class="card-body">
         {{#each userposts as |userpost|}}
         <blockquote class="blockquote mb-0">
-            <p>{{userpost.content}}</p>
+            <a href="/update/{{userpost.id}}"><p>{{userpost.title}}</p></a>
             <footer class="blockquote-footer">Posted by: {{userpost.user.username}}</footer>
         </blockquote>
         {{/each}}
@@ -26,5 +21,5 @@
 {{/if}}
 
 <!-- button to be directed to the newpost.hdb -->
-<button type="submit" class="btn btn-primary"><a href="/new">add</a>Add New Post</button>
+<a href="/new"><button type="submit" class="btn btn-primary">Add New Post</button></a>
 

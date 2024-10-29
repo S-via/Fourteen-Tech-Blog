@@ -1,6 +1,6 @@
 async function newpostFormH(event){
-    event.preventDeafult();
-    
+    event.preventDefault();
+    console.log('hello')
     const title = document.querySelector('#titlenp').value.trim();
     const content = document.querySelector('#contentnp').value.trim();
 
@@ -12,7 +12,7 @@ async function newpostFormH(event){
                 content
             }),
             headers:{
-                'Content-type':'applicion/json'
+                'Content-type':'application/json'
             }
         });
      if (response.ok){

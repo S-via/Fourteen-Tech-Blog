@@ -41,30 +41,56 @@ router.get('/login', (req, res) => {
 
 //// get dashboard route if user is loggedin ////
 router.get('/dashboard', async (req, res) => {
+    if (req.session.logged_in) {
+        const blogdata = await Blog.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [{
+                model: User,
+                attributes: ['username']
+            }]
 
-    const blogdata = await Blog.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
-        include: [{
-            model: User,
-            attributes: ['username']
-        }]
+        })
+        const userposts = blogdata.map(data => data.get({ plain: true }));
+        console.log(userposts);
 
-    })
-    const userposts = blogdata.map(data => data.get({ plain: true }));
-    console.log(userposts);
+        res.render('dashboard', {
+            userposts: userposts,
+            logged_in: req.session.logged_in
+        });
+    } else {
+        res.redirect("/login")
+    }
 
-    res.render('dashboard', {
-        userposts: userposts,
-        logged_in: req.session.logged_in
-    });
 })
 
 // get newpost route
-router.get('/new', (req,res)=>{
+router.get('/new', (req, res) => {
     res.render('newpost');
 })
+
+// update post route
+router.get('/update/:post_id', async (req, res) => {
+    const blogdata = await Blog.findByPk(req.params.post_id,
+        {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'] // Fetch the username
+                }
+            ]
+        }
+    );
+
+    // serilize data and only get the info we need
+    const blogpost = blogdata.get({ plain: true });
+
+    res.render('update', {
+        blogpost
+    });
+})
+
 
 
 

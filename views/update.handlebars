@@ -7,3 +7,18 @@ Title:
 Content: 
 button to Update Post
 button to Delete Post  -->
+
+<form id ="newpostform">
+    <h1>Update Post</h1>
+<div class="mb-3">
+  <label for="titlenp" class="form-label">Title</label>
+  <input type="text" class="form-control" id="titlenp" placeholder="Title" value="{{blogpost.title}}">
+</div>
+<div class="mb-3">
+  <label for="contentnp" class="form-label">Content</label>
+  <textarea class="form-control" id="contentnp" rows="3">{{blogpost.content}}</textarea>
+</div>
+<button type="submit" class="btn btn-primary">Create New Post</button>
+</form>
+
+<!--  link a script -->

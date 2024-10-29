@@ -5,8 +5,8 @@ const { User, Blog, Comment } = require('../../models');
 
 
 ////// create route for users to signup /////
-router.post('/signup', async(req,res) =>{
-    try{
+router.post('/signup', async (req, res) => {
+    try {
         const newuserData = await User.create({
             username: req.body.username,
             password: req.body.password,
@@ -17,15 +17,15 @@ router.post('/signup', async(req,res) =>{
             req.session.logged_in = true;
             res.redirect('/dashboard')
         });
-    }catch (err){
-        
-        res.status(500).json({message: err})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: err })
     }
 })
 
 //// create route for users to login ////
 router.post('/login', async (req, res) => {
-    
+    console.log(req.body)
     try {
         const userData = await User.findOne({
             where: {
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: 'invalid' })
             return;
         }
-        
+
         const validatepassword = await userData.checkPassword(req.body.password);
         // return error if password in incorrect
         if (!validatepassword) {
@@ -50,23 +50,24 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
             res.redirect('/dashboard')
-            
+
         });
     } catch (err) {
+        console.log(err)
         res.status(500).json(err)
     }
 }
-) 
+)
 
 
 //// create route .post to loggout //// NOT WORKING !!!!
-router.post('/logout',(req,res)=>{
-    if(req.session.logged_in){
-        req.session.destroy(()=>{
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
             res.status(200).end()
         })
-        
-    }else {
+
+    } else {
         res.status(400).end();
     }
 })
