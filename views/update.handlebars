@@ -1,24 +1,19 @@
 <!-- if user clicks title inside dashboard
 they will be able to update it -->
 
-<!--form with 
-title Edit Post
-Title:
-Content: 
-button to Update Post
-button to Delete Post  -->
-
-<form id ="newpostform">
+<form id ="editpostform">
     <h1>Update Post</h1>
+    <input type ="hidden" id ="post-id" value="{{blogpost.id}}">
 <div class="mb-3">
-  <label for="titlenp" class="form-label">Title</label>
-  <input type="text" class="form-control" id="titlenp" placeholder="Title" value="{{blogpost.title}}">
+  <label for="editpost" class="form-label">Title</label>
+  <input type="text" class="form-control" id="editpost" placeholder="Title" value="{{blogpost.title}}">
 </div>
 <div class="mb-3">
-  <label for="contentnp" class="form-label">Content</label>
-  <textarea class="form-control" id="contentnp" rows="3">{{blogpost.content}}</textarea>
+  <label for="contentedit" class="form-label">Content</label>
+  <textarea class="form-control" id="contentedit" rows="3">{{blogpost.content}}</textarea>
 </div>
-<button type="submit" class="btn btn-primary">Create New Post</button>
+<button type="submit" class="btn btn-primary">Update Post</button>
 </form>
 
 <!--  link a script -->
+<script src="/js/update.js"></script>

@@ -12,7 +12,7 @@ async function newpostFormH(event){
                 content
             }),
             headers:{
-                'Content-type':'application/json'
+                'Content-Type':'application/json'
             }
         });
      if (response.ok){

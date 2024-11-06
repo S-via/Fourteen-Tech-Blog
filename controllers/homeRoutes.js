@@ -72,7 +72,8 @@ router.get('/new', (req, res) => {
 
 // update post route
 router.get('/update/:post_id', async (req, res) => {
-    const blogdata = await Blog.findByPk(req.params.post_id,
+    const blogdata = await Blog.findByPk
+    ( req.params.post_id,
         {
             include: [
                 {
@@ -82,7 +83,7 @@ router.get('/update/:post_id', async (req, res) => {
             ]
         }
     );
-
+console.log(blogdata)
     // serilize data and only get the info we need
     const blogpost = blogdata.get({ plain: true });
 
