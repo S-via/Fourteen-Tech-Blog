@@ -10,6 +10,10 @@ router.get('/', async (req, res) => {
             {
                 model: User,
                 attributes: ['username'] // Fetch the username
+            },
+            {
+                model:Comment,
+
             }
         ]
     }
@@ -18,6 +22,7 @@ router.get('/', async (req, res) => {
     // serilize data and only get the info we need
     const blogposts = blogdata.map(data => data.get({ plain: true }))
     console.log(blogposts);
+    console.log(blogposts[0].comments)
 
     // pass blogpost data to homepage.hdb
     res.render('homepage', {
@@ -86,12 +91,35 @@ router.get('/update/:post_id', async (req, res) => {
 console.log(blogdata)
     // serilize data and only get the info we need
     const blogpost = blogdata.get({ plain: true });
-
+    
     res.render('update', {
         blogpost
     });
 })
 
+// GET comment route //
+router.get('/comment/:post_id', withAuth, async (req,res)=>{
+    const commentData = await Blog.findByPk
+    ( req.params.post_id,
+        {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'] // Fetch the username
+                }
+            ]
+        }
+    );
+    console.log(commentData)
+    // serilize data and only get the info we need
+    const commentPost = commentData.get({ plain: true });
+
+    res.render('comment',
+        {
+          commentPost 
+        }
+    );
+})
 
 
 

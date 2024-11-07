@@ -5,7 +5,7 @@ const { Blog, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// create new blog post ////
+//// create new blog post ////
 router.post('/newpost', withAuth, async (req, res) => {
     try {
         // create new post and associate with logged in user
@@ -20,7 +20,7 @@ router.post('/newpost', withAuth, async (req, res) => {
     }
 });
 
-//// route for put
+//// route for put ////
 router.put('/update/:post_id', async (req, res) => {
     try {
         const updateBlog = await Blog.update(

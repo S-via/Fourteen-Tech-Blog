@@ -1,15 +1,14 @@
-<!-- not activated -->
 
-{{#if logged_in}} <!-- check with auth-->
-<form>
+
+<!-- check with auth ????--> 
+<form id = "commentform">
+  <input type ="hidden" id ="blog-id" value="{{commentPost.id}}">
   <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Comment</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="enter your comment">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">{{blog.comment}}</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
- 
+  <label for="commentpost" class="form-label">Comment</label>
+  <input type="text" class="form-control" id="commentpost" placeholder="enter your comment">
+</div> 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<!-- link to script -->
+<script src="/js/comment.js"></script>
