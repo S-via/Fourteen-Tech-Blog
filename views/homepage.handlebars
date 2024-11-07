@@ -2,11 +2,12 @@
 <div class="card">
     <div class="card-header">
         {{#if blogposts.length}}
+        {{#each blogposts as |blogpost|}}
+            <a href="/comment/{{blogpost.id}}"><p>{{blogpost.title}}</p></a>
     </div>
     <div class="card-body">
-        {{#each blogposts as |blogpost|}}
         <blockquote class="blockquote mb-0">
-            <a href="/comment/{{blogpost.id}}"><p>{{blogpost.title}}</p></a>
+            <p>{{blogpost.content}}</p>
             <footer class="blockquote-footer">Posted by: {{blogpost.user.username}}</footer>
             {{#each blogpost.comments as |comment|}}
             <p>{{comment.comments}}</p>
