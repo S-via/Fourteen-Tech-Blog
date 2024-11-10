@@ -3,24 +3,32 @@
     <div class="card-header">
         {{#if blogposts.length}}
         {{#each blogposts as |blogpost|}}
-            <a href="/comment/{{blogpost.id}}"><p>{{blogpost.title}}</p></a>
+        <a href="/comment/{{blogpost.id}}">
+            <p>{{blogpost.title}}</p>
+        </a>
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
             <p>{{blogpost.content}}</p>
             <footer class="blockquote-footer">Posted by: {{blogpost.user.username}}</footer>
-            {{#each blogpost.comments as |comment|}}
-            <p>{{comment.comments}}</p>
-            {{/each}}
         </blockquote>
-        {{/each}}
+        <div class="card">
+            <div class="card-header">
+                {{#each blogpost.comments as |comment|}}
+            </div>
+            <div class="card-body">
+                <p>{{comment.comments}}</p>
+            </div>
+            {{/each}}
+            {{/each}}
+        </div>
+
     </div>
-</div>
 
-{{else}}
-<p>no blogs found</p>
-{{/if}}
+    {{else}}
+    <p>no blogs found</p>
+    {{/if}}
 
 
-<!-- when clicked on title of blog post it will direct them to -->
-<!-- Add comment with button to submit-->
+    <!-- when clicked on title of blog post it will direct them to -->
+    <!-- Add comment with button to submit-->
