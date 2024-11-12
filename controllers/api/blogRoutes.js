@@ -26,12 +26,12 @@ router.put('/update/:post_id', async (req, res) => {
         const updateBlog = await Blog.update(
             {
                 title: req.body.title,
-                content:req.body.content
-               
+                content: req.body.content
+
             },
             {
-                where:{
-                    id:req.params.post_id
+                where: {
+                    id: req.params.post_id
                 }
             }
         );
@@ -50,6 +50,25 @@ router.put('/update/:post_id', async (req, res) => {
         res.status(200).end();
     });
 }); */
+
+// DELETE blog by id 
+
+router.delete('/delete/:post_id', async (req, res) => {
+    try {
+        const deleteBlog = await Blog.destroy({
+
+            where: {
+                id: req.params.post_id
+            }
+        });
+        res.status(200).json(deleteBlog);
+    } catch (err) {
+        console.log(err)
+        {
+            res.status(400).json(err);
+        }
+    }
+})
 
 
 module.exports = router;
