@@ -18,6 +18,7 @@ nav {
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: baseline;
+  
     
 }
 
@@ -29,7 +30,7 @@ header {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    background-image: url('/images/database.jpg');
+    background-image: url('/images/whitehue.jpg');
     background-size: cover;
 
 }
