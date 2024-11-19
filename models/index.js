@@ -2,8 +2,8 @@
 
 // export each invidual model
 const User = require('./user');
-const Blog =require('./Blog');
-const Comment = require('./Comment');
+const Blog =require('./blog');
+const Comment = require('./comment');
 
 // user has many blog
 User.hasMany(Blog,{
