@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
     // serilize data and only get the info we need
     const blogposts = blogdata.map(data => data.get({ plain: true }))
-    console.log(blogposts);
-    console.log(blogposts[0].comments)
+  /*   console.log(blogposts);
+    console.log(blogposts[0].comments) */
 
     // pass blogpost data to homepage.hdb
     res.render('homepage', {
